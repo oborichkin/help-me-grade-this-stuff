@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html class="h-100" lang="ru">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Answer grading</title>
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+            crossorigin="anonymous"
+            />
+        <link
+            rel="stylesheet"
+            href="{{ url_for('static', filename='main.css') }}"
+            />
+        <link rel="shortcut icon" href="{{ url_for('static', filename='favicon/favicon.ico') }}" type="image/x-icon" /> 
+        <link rel="icon" href="{{ url_for('static', filename='favicon/favicon.gif') }}" type="image/gif" />
+
+    </head>
+    <body class="d-flex flex-column h-100">
+        <main role="main" class="flex-shrink-0">
+            <div class="container">
+                <h1 class="mt-5">Answer grading</h1>
+                <div class="p-1 mb-3">
+                    <span class="badge badge-primary">
+                        Total
+                        <span class="badge badge-light">{{ total }}</span>
+                    </span>
+                    <span class="badge badge-success">
+                        Done
+                        <span class="badge badge-light">{{ done }}</span>
+                    </span>
+                    <span class="badge badge-danger">
+                        Left
+                        <span class="badge badge-light">{{ left }}</span>
+                    </span>
+                </div>
+                <div class="card">
+                    <ul class="list-group list-group-flush">
+                        <div class="card-header">
+                            Вопрос
+                        </div>
+                        <li class="list-group-item">
+                            <p>
+                                {{ answer.question.text }}
+                            </p>
+                        </li>
+                        <div class="card-header">
+                            Ответ студента
+                        </div>
+                        <li class="list-group-item">
+                            <p>
+                                {{ answer.text }}
+                            </p>
+                        </li>
+                        <div class="card-header">
+                            Правильный ответ
+                        </div>
+                        <li class="list-group-item">
+                            <p>
+                                {{ answer.question.right_answer }}
+                            </p>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <form action="{{ url_for('check', answer_id=answer.id) }}" method="POST">
+                                        <input id="result" name="result" type="hidden" value="correct">
+                                        <input
+                                            value="Верно"
+                                            type="submit"
+                                            class="btn btn-success btn-lg
+                                            btn-block" />
+                                    </form>
+                                </div>
+                                <div class="col-sm-6">
+                                    <form action="{{ url_for('check', answer_id=answer.id) }}" method="POST">
+                                        <input id="result" name="result" type="hidden" value="incorrect">
+                                        <input
+                                            value="Неверно"
+                                            type="submit"
+                                            class="btn btn-danger btn-lg
+                                            btn-block" />
+                                    </form>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer mt-auto py-3">
+            <div class="container text-center">
+                <span class="text-muted"><a href="https://github.com/Oborichkin">Pavel Oborin</a> &copy; 2019</span>
+            </div>
+        </footer>
+
+        <script
+            src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+        <script
+            src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+    </body>
+</html>

@@ -15,7 +15,7 @@ class Answer(db.Model):
 class Question(db.Model):
     __tablename__ = 'question'
     id = db.Column(db.Integer, primary_key=True)
-    text = db.Column(db.Integer)
+    text = db.Column(db.Text)
     right_answer = db.Column(db.Text)
 
     answers = db.relationship('Answer', backref='question')

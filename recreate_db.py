@@ -15,7 +15,7 @@ if __name__ == '__main__':
 
     for _, row in que.iterrows():
         if row_limit <= 0:
-            exit
+            break
         q = Question(id=row['ID'],
                      text=row['QUESTIOIN'],
                      right_answer=row['TEACHER_ANSWER'])
@@ -25,7 +25,7 @@ if __name__ == '__main__':
 
     for _, row in ans.iterrows():
         if row_limit <= 0:
-            exit
+            break
         a = Answer(id=row['ID'],
                    q_id=row['Q_ID'],
                    text=row['ANSWER'])

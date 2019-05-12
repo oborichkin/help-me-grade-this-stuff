@@ -19,6 +19,8 @@ if __name__ == '__main__':
     db.session.commit()
 
     for _, row in ans.iterrows():
+        if row['ID'] == 9895:
+            exit
         a = Answer(id=row['ID'],
                    q_id=row['Q_ID'],
                    text=row['ANSWER'])

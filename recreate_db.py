@@ -12,7 +12,7 @@ if __name__ == '__main__':
     ans = pd.read_csv("data/ans.csv", sep='|')
 
     row_limit = 10000
-
+    
     for _, row in que.iterrows():
         if row_limit <= 0:
             break
@@ -23,7 +23,8 @@ if __name__ == '__main__':
         row_limit -= 1
     db.session.commit()
 
-    for _, row in ans.iterrows():
+    start = row_limit
+    for _, row in ans[start:].iterrows():
         if row_limit <= 0:
             break
         a = Answer(id=row['ID'],
